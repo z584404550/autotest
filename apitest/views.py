@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import  auth
 from django.contrib.auth import authenticate,login
 # Create your views here.
-# def test(request):
-#     return HttpResponse("Hello test") #返回HttpResponse响应函数
+def test(request):
+    return HttpResponse("Hello test") #返回HttpResponse响应函数
 def login(request):
     if request.POST:
         username = password =''
@@ -21,5 +21,5 @@ def login(request):
             return render(request,'login.html',{'error':'username os password error'})
         # else:
         #     context={}
-        #     return render(request,'long.thml',context)
+        #     return render(request,'long.html',context)
     return render(request,'login.html')
