@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from apitest import views
-
+from environment import proviews
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('test/' , views.test),
     path('login/' , views.login),
     path('home/', views.home),
     path('logout/', views.logout),
+    path('environment_manage/', proviews.environment_manage),
 
 ]
