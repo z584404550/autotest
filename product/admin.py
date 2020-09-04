@@ -23,4 +23,4 @@ class ProModuleAdmin(admin.ModelAdmin):
 admin.site.register(Product,ProductAdmin)
 admin.site.register(Environment,EnvironmentAdmin)
 admin.site.register(Pro_Env_Url,Pro_Env_UrlAdmim)
-admin.site.register(Pro_Module,Pro_Module)
+admin.site.register(Pro_Module,ProModuleAdmin)
