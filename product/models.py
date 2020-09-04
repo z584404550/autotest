@@ -29,3 +29,6 @@ class Pro_env_url(models.Model):
     product_url = models.CharField('产品地址',max_length=200) #产品地址
     def __str__(self):
         return self.Product
+    class Meta:
+        verbose_name='产品地址'
+        verbose_name_plural='产品地址'
