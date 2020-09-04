@@ -35,14 +35,14 @@ class Pro_Env_Url(models.Model):
         verbose_name='产品地址'
         verbose_name_plural='产品地址'
 
-class Pro_Mod(models.Model):
+class Pro_Module(models.Model):
     Product=models.ForeignKey('Product',on_delete=models.CASCADE,null=True)
-    model_name = models.CharField('模块名称', max_length=16)  # 模块名称
-    model_url = models.CharField('地址地址',max_length=32) #模块地址
+    modulename = models.CharField('模块名称', max_length=16)  # 模块名称
+    moduleurl = models.CharField('地址地址',max_length=32) #模块地址
     update_time = models.DateTimeField('修改时间',auto_now=True) #修改时间,自动获取当前时间
     create_time = models.DateTimeField('创建时间', auto_now_add=True)  # 创建时间,自动获取第一次创建时间
     def __str__(self):
-        return self.model_name
+        return self.modulename
     class Meta:
         verbose_name='模块管理'
         verbose_name_plural='模块管理'
