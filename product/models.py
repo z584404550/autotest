@@ -9,8 +9,8 @@ class Product(models.Model):
     class Meta:
         verbose_name='产品管理'
         verbose_name_plural='产品管理'
-        def __str__(self):
-            return self.productname
+    def __str__(self):
+        return self.productname
 
 class Environment(models.Model):
     environmentname=models.CharField('环境名称',max_length=64) #环境名称
@@ -23,9 +23,9 @@ class Environment(models.Model):
     def __str__(self):
         return self.environmentname
 
-# class Product_env_url(models.Model):
-#     Product=models.ForeignKey('Product',on_delete=models.CASCADE,)
-#     Environment = models.ForeignKey('environment.Environment', on_delete=models.CASCADE,null=True)  # 关联环境ID，其中environment是应用名，Environment是environment应用的表名
-#     product_url = models.CharField('产品地址',max_length=200) #产品地址
-#     def __str__(self):
-#         return self.product_url
+class Pro_env_url(models.Model):
+    Product=models.ForeignKey('Product',on_delete=models.CASCADE,null=True)
+    Environment = models.ForeignKey('Environment', on_delete=models.CASCADE,null=True)  # 关联环境ID，其中environment是应用名，Environment是environment应用的表名
+    product_url = models.CharField('产品地址',max_length=200) #产品地址
+    def __str__(self):
+        return self.Product
