@@ -5,7 +5,7 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <meta charset="UTF-8">
-    <title>自动化测试平台-产品</title>
+    <title>自动化测试平台-产品地址</title>
 </head>
 <body role="document">
 <!-- 导航栏-->
@@ -31,14 +31,14 @@
 </tr>
 </thead>
 <tbody>
-{% for product in products %}
+{% for proenvurl in proenvurls %}
 <tr>
-<td>{{ product.id }}</td>
-<td>{{ product.productname }}</td>
-<td>{{ product.productdesc }}</td>
-<td>{{ product.productdesc }}</td>
-<td>{{ product.update_time }}</td>
-<td>{{ product.create_time }}</td>
+<td>{{ proenvurl.id }}</td>
+<td>{{ proenvurl.product }}</td>
+<td>{{ proenvurl.environment }}</td>
+<td>{{ proenvurl.product_url }}</td>
+<td>{{ proenvurl.update_time }}</td>
+<td>{{ proenvurl.create_time }}</td>
 </tr>
 {% endfor %}
 </tbody>
