@@ -34,8 +34,8 @@
 {% for proenvurl in proenvurls %}
 <tr>
 <td>{{ proenvurl.id }}</td>
-<td>{{ proenvurl.product }}</td>
-<td>{{ proenvurl.environment }}</td>
+<td>{{ proenvurl.Product.productname }}</td>
+<td>{{ proenvurl.Environment.environmentname }}</td>
 <td>{{ proenvurl.producturl }}</td>
 <td>{{ proenvurl.update_time }}</td>
 <td>{{ proenvurl.create_time }}</td>
