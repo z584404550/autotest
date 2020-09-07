@@ -9,40 +9,40 @@
 </head>
 <body role="document">
 <!-- 导航栏-->
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-<div class="container">
-<a class="navbar-brand" href="#">&nbsp;</a>
-<ul class="nav justify-content-center">
-</ul>
-<ul class="nav justify-content-end">
-<li class="nav-link"><a style='color:white' href="#">{{user}}</a></li>
-<li class="nav-link"><a style='color:white' href="/logout/">退出</a></li>
-</ul>
-</div>
-</nav>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">&nbsp;</a>
+            <ul class="nav justify-content-center"></ul>
+            <ul class="nav justify-content-end">
+                <li class="nav-link"><a style='color:white' href="#">{{user}}</a></li>
+                <li class="nav-link"><a style='color:white' href="/logout/">退出</a></li>
+            </ul>
+        </div>
+    </nav>
 <!-- 环境列表-->
-<div class="row" style="padding-top: 20px;">
-<div class="col-md-11">
-<table class="table table-striped">
-<thead>
-<tr><td>&nbsp;</td></tr>
-<tr>
-<th>ID</th><th>产品名称</th><th>模块名称</th><th>更新时间</th><th>创建时间</th>
-</tr>
-</thead>
-<tbody>
-{% for promodule in promodules %}
-<tr>
-<td>{{ promodule.id }}</td>
-<td>{{ promodule.Product.productname }}</td>
-<td>{{ promodule.modulename }}</td>
-<td>{{ promodule.update_time }}</td>
-<td>{{ promodule.create_time }}</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
-</div>
-</div>
+    <div class="row" style="padding-top: 20px;">
+        <div class="col-md-11">
+            <table class="table table-striped">
+                <thead>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <th>ID</th><th>产品名称</th><th>模块名称</th><th>更新时间</th><th>创建时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for promodule in promodules %}
+                    <tr>
+                        <td>{{ promodule.id }}</td>
+                        <td>{{ promodule.Product.productname }}</td>
+                        <td>{{ promodule.modulename }}</td>
+                        <td>{{ promodule.moduleurl }}</td>
+                        <td>{{ promodule.update_time }}</td>
+                        <td>{{ promodule.create_time }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

@@ -20,4 +20,4 @@ def proenvurl_manage(request):
 def promodule_manage(request):
     username = request.session.get('user', '')
     promodule_list = Pro_Module.objects.all()
-    return render(request, "environment_manage.html", {"user": username, "promodules": promodule_list})
+    return render(request, "promodule_manage.html", {"user": username, "promodules": promodule_list})
