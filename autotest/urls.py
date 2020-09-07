@@ -23,5 +23,8 @@ urlpatterns = [
     path('login/' , views.login),
     path('home/', views.home),
     path('logout/', views.logout),
-    path('environment_manage/',proviews.environment_manage)
+    path('environment_manage/',proviews.environment_manage),
+    path('product_manage/',proviews.product_manage),
+    path('proenvurl_manage/',proviews.proenvurl_manage),
+    path('promodule_manage/',proviews.promodule_manage),
 ]
