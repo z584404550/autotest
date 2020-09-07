@@ -26,7 +26,7 @@ class Environment(models.Model):
 class Pro_Env_Url(models.Model):
     Product=models.ForeignKey('Product',on_delete=models.CASCADE,null=True)
     Environment = models.ForeignKey('Environment', on_delete=models.CASCADE,null=True)  # 关联环境ID，其中environment是应用名，Environment是environment应用的表名
-    product_url = models.CharField('产品地址',max_length=200) #产品地址
+    producturl = models.CharField('产品地址',max_length=200) #产品地址
     update_time = models.DateTimeField('修改时间',auto_now=True) #修改时间,自动获取当前时间
     create_time = models.DateTimeField('创建时间', auto_now_add=True)  # 创建时间,自动获取第一次创建时间
     def __str__(self):

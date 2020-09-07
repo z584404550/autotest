@@ -12,7 +12,7 @@ class EnvironmentAdmin(admin.ModelAdmin):
     list_per_page = 10
 
 class Pro_Env_UrlAdmim(admin.ModelAdmin):
-    list_display = ['id','Product','Environment','product_url','update_time','create_time']
+    list_display = ['id','Product','Environment','producturl','update_time','create_time']
     list_per_page = 10
 
 class ProModuleAdmin(admin.ModelAdmin):
