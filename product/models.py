@@ -30,7 +30,7 @@ class Pro_Env_Url(models.Model):
     update_time = models.DateTimeField('修改时间',auto_now=True) #修改时间,自动获取当前时间
     create_time = models.DateTimeField('创建时间', auto_now_add=True)  # 创建时间,自动获取第一次创建时间
     def __str__(self):
-        return self.product_url
+        return self.producturl
     class Meta:
         verbose_name='产品地址'
         verbose_name_plural='产品地址'
