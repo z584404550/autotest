@@ -1,7 +1,9 @@
 from django.db import models
-from product.models import Product, Pro_Module
+
 
 # Create your models here.
+
+
 class Interface(models.Model):
     # 关联产品 ID，其中 product 是应用名，Product 是 product 应用的表名
     Product = models.ForeignKey('product.Product', on_delete=models.CASCADE, null=True)
@@ -14,11 +16,14 @@ class Interface(models.Model):
     request_method = models.CharField(verbose_name='请求方法', choices=REQUEST_METHOD, max_length=16, null=True)  # 请求方法
     update_time = models.DateTimeField('创建时间', auto_now=True)  # 更新时间，自动获取当前时间
     create_time = models.DateTimeField('创建时间', auto_now_add=True)  # 创建时间，自动获取第一次时间
+
     class Meta:
         verbose_name = '接口管理'
         verbose_name_plural = '接口管理'
+
     def __str__(self):
         return self.interfecename
+
 
 class Apitest(models.Model):
     # 关联产品 ID，其中 product 是应用名，Product 是 product 应用的表名
@@ -29,11 +34,14 @@ class Apitest(models.Model):
     apitestresult = models.BooleanField('测试结果')  # 流程接口测试结果
     update_time = models.DateTimeField('创建时间', auto_now=True)  # 更新时间，自动获取当前时间
     create_time = models.DateTimeField('创建时间', auto_now_add=True)  # 创建时间，自动获取第一次时间
+
     class Meta:
         verbose_name = '流程场景接口'
         verbose_name_plural = '流程场景接口'
+
     def __str__(self):
         return self.apitestname
+
 
 class Apistep(models.Model):
     apitest = models.ForeignKey(Apitest, on_delete=models.CASCADE, null=True)  # 关联接口ID
@@ -45,5 +53,6 @@ class Apistep(models.Model):
     apistatus = models.BooleanField('是否通过')  # 测试结果
     update_time = models.DateTimeField('创建时间', auto_now=True)  # 更新时间，自动获取当前时间
     create_time = models.DateTimeField('创建时间', auto_now_add=True)  # 创建时间，自动获取第一次时间
+
     def __str__(self):
         return self.apiname
