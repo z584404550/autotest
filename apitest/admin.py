@@ -5,7 +5,7 @@ from .models import Interface, ApiTest, ApiStep
 
 
 class InterfaceAdmin(admin.ModelAdmin):
-    list_display = ['id', 'Product', 'Module', 'interfecename', 'interfacedesc',
+    list_display = ['id', 'Product', 'Module', 'interfacename', 'interfacedesc',
                     'interfaceurl', 'request_method', 'update_time', 'create_time']
 #     list_per_page = 10
 

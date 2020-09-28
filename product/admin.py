@@ -14,7 +14,7 @@ class EnvironmentAdmin(admin.ModelAdmin):
     list_per_page = 10
 
 
-class ProEnvUrlAdmim(admin.ModelAdmin):
+class ProEnvUrlAdmin(admin.ModelAdmin):
     list_display = ['id', 'Product', 'Environment', 'producturl', 'update_time', 'create_time']
     list_per_page = 10
 
@@ -26,5 +26,5 @@ class ProModuleAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Environment, EnvironmentAdmin)
-admin.site.register(ProEnvUrl, ProEnvUrlAdmim)
+admin.site.register(ProEnvUrl, ProEnvUrlAdmin)
 admin.site.register(ProModule, ProModuleAdmin)

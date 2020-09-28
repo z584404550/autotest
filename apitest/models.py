@@ -44,7 +44,7 @@ class ApiTest(models.Model):
 
 
 class ApiStep(models.Model):
-    apitest = models.ForeignKey(Apitest, on_delete=models.CASCADE, null=True)  # 关联接口ID
+    apitest = models.ForeignKey(ApiTest, on_delete=models.CASCADE, null=True)  # 关联接口ID
     apiname = models.ForeignKey(Interface, on_delete=models.CASCADE, null=True)  # 接口名称
     apidesc = models.CharField('接口描述', max_length=200)  # 描述
     apiparamvalue = models.CharField('请求参数和值', max_length=200)  # 参数和值
