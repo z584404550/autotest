@@ -25,7 +25,7 @@ class Interface(models.Model):
         return self.interfecename
 
 
-class Apitest(models.Model):
+class ApiTest(models.Model):
     # 关联产品 ID，其中 product 是应用名，Product 是 product 应用的表名
     product = models.ForeignKey('product.Product', on_delete=models.CASCADE, null=True)
     apitestname = models.CharField('流程接口名称', max_length=64)  # 流程接口测试场景
@@ -43,7 +43,7 @@ class Apitest(models.Model):
         return self.apitestname
 
 
-class Apistep(models.Model):
+class ApiStep(models.Model):
     apitest = models.ForeignKey(Apitest, on_delete=models.CASCADE, null=True)  # 关联接口ID
     apiname = models.ForeignKey(Interface, on_delete=models.CASCADE, null=True)  # 接口名称
     apidesc = models.CharField('接口描述', max_length=200)  # 描述

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Interface, Apitest, Apistep
+from .models import Interface, ApiTest, ApiStep
 
 # Register your models here.
 
@@ -10,18 +10,18 @@ class InterfaceAdmin(admin.ModelAdmin):
 #     list_per_page = 10
 
 
-class ApistepAdmin(admin.TabularInline):
+class ApiStepAdmin(admin.TabularInline):
     list_display = ['id''apiname', 'apidesc', 'apiparamvalue', 'apiresult',
                     'apistep', 'apistatus', 'update_time', 'create_time']
-    model = Apistep
+    model = ApiStep
     extra = 1
 
 
-class ApitestAdmin(admin.ModelAdmin):
+class ApiTestAdmin(admin.ModelAdmin):
     list_display = ['id', 'apitestname', 'apitestdesc', 'apitester',
                     'apitestresult', 'create_time']
-    inlines = [ApistepAdmin]
+    inlines = [ApiStepAdmin]
 
 
 admin.site.register(Interface, InterfaceAdmin)
-admin.site.register(Apitest, ApitestAdmin)
+admin.site.register(ApiTest, ApiTestAdmin)
