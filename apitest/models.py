@@ -8,8 +8,8 @@ class Interface(models.Model):
     # 关联产品 ID，其中 product 是应用名，Product 是 product 应用的表名
     Product = models.ForeignKey('product.Product', on_delete=models.CASCADE, null=True)
     # 关联模块 ID，其中 promodule 是应用名，Pro_module 是 promodule 应用的表名
-    Module = models.ForeignKey('product.Pro_Module', on_delete=models.CASCADE, null=True)
-    interfecename = models.CharField('接口名称', max_length=64)  # 接口名称
+    Module = models.ForeignKey('product.ProModule', on_delete=models.CASCADE, null=True)
+    interfacename = models.CharField('接口名称', max_length=64)  # 接口名称
     interfacedesc = models.CharField('接口描述', max_length=64, null=True)  # 接口描述
     interfaceurl = models.CharField('接口地址', max_length=200, null=True)  # 接口地址
     REQUEST_METHOD = (('get', 'get'), ('post', 'post'), ('put', 'put'), ('delete', 'delete'), ('patch', 'patch'))
@@ -22,7 +22,7 @@ class Interface(models.Model):
         verbose_name_plural = '接口管理'
 
     def __str__(self):
-        return self.interfecename
+        return self.interfacename, self.interfaceurl
 
 
 class ApiTest(models.Model):
