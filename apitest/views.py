@@ -29,6 +29,10 @@ def home(request):
     return render(request, "home.html")
 
 
+def left(request):
+    return render(request, "left.html")
+
+
 # 接口管理
 @login_required
 def apitest_manage(request):
