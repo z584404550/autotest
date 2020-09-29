@@ -6,13 +6,8 @@ from .models import ApiTest, ApiStep
 # Create your views here.
 
 
-def test(request):
-    return HttpResponse("Hello test")  # 返回HttpResponse响应函数
-
-
 def login(request):
     if request.POST:
-        username = password = ''
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = auth.authenticate(username=username, password=password)
