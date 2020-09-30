@@ -30,4 +30,5 @@ urlpatterns = [
     path('apistep_manage/', views.apistep_manage),
     path('left/', views.left),
     path('apisearch/', views.apisearch),
+    path ('welcome/', views.welcome),
 ]

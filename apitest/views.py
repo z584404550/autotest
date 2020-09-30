@@ -73,3 +73,6 @@ def apitest_manage(request):
         apitest_list = paginator.page(paginator.num_pages)  # 如果输入的页数不在系统的页数中，则显示最后一页内容
     return render(request, "apitest_manage.html", {"user": username, "apitests": apitest_list,
                                                    "apiscounts": apis_count})  # 定义流程接口数据的变量并返回到前端
+
+def welcome(request):
+ return render(request,"welcome.html")

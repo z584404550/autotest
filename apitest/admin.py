@@ -25,3 +25,5 @@ class ApiTestAdmin(admin.ModelAdmin):
 
 admin.site.register(Interface, InterfaceAdmin)
 admin.site.register(ApiTest, ApiTestAdmin)
+admin.site.site_title = 'AutotestPlat'
+admin.site.site_header = 'AtotestPlat'
