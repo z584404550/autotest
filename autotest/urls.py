@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from apitest import views
 from product import proviews
+from set import setviews
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.login),
@@ -28,7 +29,8 @@ urlpatterns = [
     path('promodule_manage/', proviews.promodule_manage),
     path('apitest_manage/', views.apitest_manage),
     path('apistep_manage/', views.apistep_manage),
+    path('set_user', setviews.set_user),
     path('left/', views.left),
     path('apisearch/', views.apisearch),
-    path ('welcome/', views.welcome),
+    path('welcome/', views.welcome),
 ]
