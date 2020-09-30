@@ -27,6 +27,7 @@
             <button type="submit">搜索</button>
         </form>
     </div>
+
 <!--流程接口测试步骤-->
     <div class="row" style="padding-top: 70px;">
         <div class="col-md-11">
@@ -49,8 +50,12 @@
             </table>
         </div>
     </div>
+<!--统计和翻页功能-->
     <div class="container">
         <span style="position:absolute; right:100px; bottom:30px;">
+            <div style="position:absolute; right:100px; width:100px; ">
+                <tr><th>总数</th><td>{{ apiscounts }}</td></tr> {# 前端读取定义的变量#}
+            </div>
             {# 把翻页功能固定显示在右下角#}
             <ul class="pagination" id="pager">
                 {# 上一页链接开始#}
