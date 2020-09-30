@@ -40,8 +40,10 @@ def left(request):
 @login_required
 def apistep_manage(request):
     username = request.session.get('user', '')
+    apitestid = request.GET.get('apitest.id', None)
+    apitest = ApiTest.objects.get(id=apitestid)
     apistep_list = ApiStep.objects.all()
-    return render(request, "apistep_manage.html", {"user": username, "apisteps": apistep_list})
+    return render(request, "apistep_manage.html", {"user": username, "apitest": apitest, "apisteps": apistep_list})
 
 
 # 搜索功能

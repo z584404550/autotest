@@ -28,7 +28,7 @@ urlpatterns = [
     path('proenvurl_manage/', proviews.proenvurl_manage),
     path('promodule_manage/', proviews.promodule_manage),
     path('apitest_manage/', views.apitest_manage),
-    path('apistep_manage/', views.apistep_manage),
+    path('apistep_manage/', views.apistep_manage, name='apistep_manage'),
     path('set_user', setviews.set_user),
     path('left/', views.left),
     path('apisearch/', views.apisearch),
