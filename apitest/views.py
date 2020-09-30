@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect  # 加入引用
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.decorators.clickjacking import xframe_options_exempt
 from .models import ApiTest, ApiStep
 # Create your views here.
 
@@ -26,6 +27,7 @@ def login(request):
     return render(request, 'login.html')
 
 
+@xframe_options_exempt
 def home(request):
     return render(request, "home.html")
 
