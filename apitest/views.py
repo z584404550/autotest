@@ -5,6 +5,7 @@ from django.contrib import auth
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.clickjacking import xframe_options_exempt
 from .models import ApiTest, ApiStep
+import pymysql
 # Create your views here.
 
 
@@ -114,3 +115,23 @@ def tasksearch(request):
     crontab_list = CrontabSchedule.objects.all()  # 定时任务（如某年某月某日的某时，每# 天的某时）
     return render(request, 'periodic_task.html', {"user": username, "tasks": task_list,
                                                   "periodics": periodic_list, "crontabs": crontab_list})
+
+
+# 测试报告
+@login_required
+def test_report(request):
+    username = request.session.get('user', '')
+    apis_list = ApiStep.objects.all()
+    apis_count = ApiStep.objects.all().count()  # 统计接口数
+    db = pymysql.connect(user='root', db='autotest', passwd='123456', host='127.0.0.1')
+    cursor = db.cursor()
+    sql1 = 'SELECT count(id) FROM apitest_apis WHERE apitest_apis.apistatus=1'
+    aa = cursor.execute(sql1)
+    apis_pass_count = [row[0] for row in cursor.fetchmany(aa)][0]
+    sql2 = 'SELECT count(id) FROM apitest_apis WHERE apitest_apis.apistatus=0'
+    bb = cursor.execute(sql2)
+    apis_fail_count = [row[0] for row in cursor.fetchmany(bb)][0]
+    db.close()
+    return render(request, "report.html", {"user": username, "apiss": apis_list, "apiscounts": apis_count,
+                                           "apis_pass_counts": apis_pass_count,
+                                           "apis_fail_counts": apis_fail_count})  # 把值赋给apiscounts 变量

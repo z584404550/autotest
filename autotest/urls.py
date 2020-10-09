@@ -18,6 +18,7 @@ from django.urls import path
 from apitest import views
 from product import proviews
 from set import setviews
+from bug import bugviews
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.login),
@@ -29,6 +30,8 @@ urlpatterns = [
     path('promodule_manage/', proviews.promodule_manage),
     path('apitest_manage/', views.apitest_manage),
     path('apistep_manage/', views.apistep_manage, name='apistep_manage'),
+    path('bug_manage/', bugviews.bug_manage),
+    path('test_report/', views.test_report),
     path('set_user', setviews.set_user),
     path('left/', views.left),
     path('apisearch/', views.apisearch),

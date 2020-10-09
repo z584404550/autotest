@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'product',
     'bootstrap4',
     'djcelery',
+    'bug',
 ]
 
 MIDDLEWARE = [
