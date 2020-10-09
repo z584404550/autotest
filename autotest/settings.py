@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import djcelery
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -136,3 +137,12 @@ HERE = os.path.join(HERE, '../')
 STATICFILES_DIRS = (os.path.join(HERE, 'static/'),)
 
 X_FRAME_OPTIONS = 'ALLOWALL url'
+
+# 加载djcelery
+djcelery.setup_loader()
+
+# 数据库调度
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+
+BROKER_URL = 'redis://127.0.0.1:6379/0'
+BROKER_TRANSPORT = 'redis'
