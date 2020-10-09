@@ -81,3 +81,36 @@ def apitest_manage(request):
 
 def welcome(request):
     return render(request, "welcome.html")
+
+
+# 任务计划
+@login_required
+def periodic_task(request):
+    username = request.session.get('user', '')
+    task_list = PeriodicTask.objects.all()
+    task_count = PeriodicTask.objects.all().count()  # 统计数
+    periodic_list = IntervalSchedule.objects.all()  # 周期任务（如每隔 1 小时执行 1 次）
+    crontab_list = CrontabSchedule.objects.all()  # 定时任务（如某年某月某日的某时，每天的某时）
+    paginator = Paginator(task_list, 5)  # 生成 paginator 对象,设置每页显示 5 条记录
+    page = request.GET.get('page', 1)  # 获取当前的页码数,默认为第 1 页
+    currentpage = int(page)  # 把获取的当前页码数转换成整数类型
+    try:
+        task_list = paginator.page(page)  # 获取当前页码数的记录列表
+    except PageNotAnInteger:
+        task_list = paginator.page(1)  # 如果输入的页数不是整数，则显示第 1 页内容
+    except EmptyPage:
+        task_list = paginator.page(paginator.num_pages)  # 如果输入的页数不在系统的页数中，# 则显示最后一页内容
+    return render(request, "periodic_task.html", {"user": username, "tasks": task_list, "taskcounts": task_count,
+                                                  "periodics": periodic_list, "crontabs": crontab_list})
+
+
+# 搜索功能
+@login_required
+def tasksearch(request):
+    username = request.session.get('user', '')  # 读取浏览器登录 Session
+    search_name = request.GET.get("task", "")
+    task_list = PeriodicTask.objects.filter(task__icontains=search_name)
+    periodic_list = IntervalSchedule.objects.all()  # 周期任务（如每隔 1 小时执行 1 次）
+    crontab_list = CrontabSchedule.objects.all()  # 定时任务（如某年某月某日的某时，每# 天的某时）
+    return render(request, 'periodic_task.html', {"user": username, "tasks": task_list,
+                                                  "periodics": periodic_list, "crontabs": crontab_list})

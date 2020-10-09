@@ -33,4 +33,6 @@ urlpatterns = [
     path('left/', views.left),
     path('apisearch/', views.apisearch),
     path('welcome/', views.welcome),
+    path('periodic_task/', views.periodic_task),
+    path('tasksearch/', views.tasksearch)
 ]
