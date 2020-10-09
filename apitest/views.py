@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.clickjacking import xframe_options_exempt
+from djcelery.models import PeriodicTask, CrontabSchedule, IntervalSchedule
 from .models import ApiTest, ApiStep
 import pymysql
 # Create your views here.
@@ -134,4 +135,4 @@ def test_report(request):
     db.close()
     return render(request, "report.html", {"user": username, "apiss": apis_list, "apiscounts": apis_count,
                                            "apis_pass_counts": apis_pass_count,
-                                           "apis_fail_counts": apis_fail_count})  # 把值赋给apiscounts 变量
+                                           "apis_fail_counts": apis_fail_count})  # 把值赋给apiscounts变量
