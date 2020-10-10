@@ -61,7 +61,7 @@ ROOT_URLCONF = 'autotest.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['autotestfront/dist'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,9 +133,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-HERE = os.path.dirname(os.path.abspath(__file__))
-HERE = os.path.join(HERE, '../')
-STATICFILES_DIRS = (os.path.join(HERE, 'static/'),)
+# HERE = os.path.dirname(os.path.abspath(__file__))
+# HERE = os.path.join(HERE, '../')
+# STATICFILES_DIRS = (os.path.join(HERE, 'static/'),)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'autotestfront/dist/static/'),
+]
 
 X_FRAME_OPTIONS = 'ALLOWALL url'
 

@@ -19,6 +19,8 @@ from apitest import views
 from product import proviews
 from set import setviews
 from bug import bugviews
+from django.views.generic.base import TemplateView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.login),
@@ -37,5 +39,6 @@ urlpatterns = [
     path('apisearch/', views.apisearch),
     path('welcome/', views.welcome),
     path('periodic_task/', views.periodic_task),
-    path('tasksearch/', views.tasksearch)
+    path('tasksearch/', views.tasksearch),
+    path(r'', TemplateView.as_view(template_name='index.html')),
 ]
