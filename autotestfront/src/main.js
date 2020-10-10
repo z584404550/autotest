@@ -3,6 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import iView from 'iview'
+import 'iview/dist/styles/iview.css'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false
 
@@ -13,3 +17,6 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+Vue.use(ElementUI)
+Vue.use(iView)

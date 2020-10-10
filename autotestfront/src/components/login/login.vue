@@ -1,45 +1,119 @@
 <template>
-    <div id="loginbody">
-        <el-form v-model="ruleForm" status-icon :rules="rules">
-            <!-- 用户名 -->
-            <el-form-item>
-                <el-input v-model="ruleForm.user" prefix-icon="el-icon-user" placeholder="用户名" autocomplete="off"></el-input>
-            </el-form-item>
-            <!-- 密码 -->
-            <el-form-item>
-                <el-input tpye="password" v-model="ruleForm.password" prefix-icon="el-icon-lock" placeholder="密码" autocomplete="off"></el-input>
-            </el-form-item>
-            <!-- 登录按钮 -->
-            <el-form-item>
-                <el-button type="primary" @click.enter="submitFrom()">登&nbsp;录</el-button>
-            </el-form-item>
-        </el-form>
+    <div class="main-body">
+        <div class="form">
+            <Icon type="logo-octocat" size="60" />
+            <h1>Sign in to JiaGE</h1>
+        </div>
+        <div class="login">
+            <Form ref="formInline" :model="formInline" :rules="ruleInline">
+                <FormItem prop="user">
+                    <div class="prompt">Username or email address</div>
+                    <i-Input type="text" v-model="formInline.user" placeholder="Username or Email" clearable>
+                        <Icon type="ios-person" slot="prepend" size="16"></Icon>
+                    </i-Input>
+                </FormItem>
+                <FormItem prop="password">
+                    <div class="prompt" style="float: left">Password</div>
+                    <div class="prompt" style="float: right">
+                        <a>Forgot password?</a>
+                    </div>
+                    <i-Input type="password" v-model="formInline.password" placeholder="Password" clearable>
+                        <Icon type="ios-lock" slot="prepend" size="16"></Icon>
+                    </i-Input>
+                </FormItem>
+                <FormItem>
+                    <Button class="btn" type="success" size="large" long :loading="modal_loading" @click="handleSubmit('formInline')">Sign in</Button>
+                </FormItem>
+            </Form>
+        </div>
+        <p class="register-link">
+            New to JiaGE?
+            <router-link to="/account/register">Create an account.</router-link>
+        </p>
     </div>
 </template>
 
 <script>
 export default {
-    date() { //页面初数据
-        return {
-            ruleForm: { //存储用户输入数据
-                user: '',
-                password: '',
-            },
-            rules: { // 可添加一些表单规则
-            }
-        }
-    },
-    methods: {
-        submitFrom() {
-            this.axios.post('url',{...this.ruleForm}).then(res => { // post请求，携带参数为展开运算符=user: '', passwd: '',
-                if(res.code != 0) return false; // 后台根据前端传来的数据返回对应的状态码， 0为成功，继续继续往下执行，非0即失败（-1为用户名或者密码错误，1为空）停止往下执行
-                this.$message({ //提示成功信息
-                    type: 'success',
-                    $message: '登录成功'
-                })
-                this.$router.push('/home/index') // 成功跳转到首页
-            })
-        }
+  data () {
+    return {
+      modal_loading: false,
+      formInline: {
+        user: '',
+        password: ''
+      },
+      ruleInline: {
+        user: [
+          {
+            required: true,
+            message: 'Please enter the user name',
+            trigger: 'blur'
+          }
+        ],
+        password: [
+          {
+            required: true,
+            message: 'Please enter the password',
+            trigger: 'blur'
+          }
+        ]
+      }
     }
+  },
+  methods: {
+    handleSubmit (name) {
+      this.$refs[name].validate(valid => {
+        if (valid) {
+          this.modal_loading = true
+          setTimeout(() => {
+            this.modal_loading = false
+            this.$router.push({
+              path: '/'
+            })
+          }, 2000)
+        }
+      })
+    }
+  }
 }
 </script>
+
+<style scoped>
+.form {
+  text-align: center;
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 25px;
+}
+.form h1 {
+  font-size: 24px;
+  font-weight: 100;
+  letter-spacing: -0.5px;
+}
+.login {
+  width: 308px;
+  margin: 0 auto;
+  border: 1px solid #d8dee2;
+  height: 257px;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+.prompt {
+  font-size: 13px;
+  font-weight: 600;
+}
+.btn {
+  font-weight: 600;
+}
+.register-link {
+  margin: 0 auto;
+  width: 308px;
+  padding: 15px 20px;
+  text-align: center;
+  border: 1px solid #d8dee2;
+  border-radius: 5px;
+}
+</style>
