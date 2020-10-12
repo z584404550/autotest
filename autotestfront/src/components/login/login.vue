@@ -1,36 +1,36 @@
 <template>
-    <div class="main-body">
-        <div class="form">
-            <Icon type="logo-octocat" size="60" />
-            <h1>Sign in to JiaGE</h1>
-        </div>
-        <div class="login">
-            <Form ref="formInline" :model="formInline" :rules="ruleInline">
-                <FormItem prop="user">
-                    <div class="prompt">Username or email address</div>
-                    <i-Input type="text" v-model="formInline.user" placeholder="Username or Email" clearable>
-                        <Icon type="ios-person" slot="prepend" size="16"></Icon>
-                    </i-Input>
-                </FormItem>
-                <FormItem prop="password">
-                    <div class="prompt" style="float: left">Password</div>
-                    <div class="prompt" style="float: right">
-                        <a>Forgot password?</a>
-                    </div>
-                    <i-Input type="password" v-model="formInline.password" placeholder="Password" clearable>
-                        <Icon type="ios-lock" slot="prepend" size="16"></Icon>
-                    </i-Input>
-                </FormItem>
-                <FormItem>
-                    <Button class="btn" type="success" size="large" long :loading="modal_loading" @click="handleSubmit('formInline')">Sign in</Button>
-                </FormItem>
-            </Form>
-        </div>
-        <p class="register-link">
-            New to JiaGE?
-            <router-link to="/account/register">Create an account.</router-link>
-        </p>
+  <div class="main-body">
+    <div class="form">
+      <Icon type="logo-octocat" size="60" />
+      <h1>Sign in to JiaGE</h1>
     </div>
+    <div class="login">
+      <Form ref="formInline" :model="formInline" :rules="ruleInline">
+        <FormItem prop="user">
+          <div class="prompt">Username or email address</div>
+          <i-Input type="text" v-model="formInline.user" placeholder="Username or Email" clearable>
+            <Icon type="ios-person" slot="prepend" size="16"></Icon>
+          </i-Input>
+        </FormItem>
+        <FormItem prop="password">
+          <div class="prompt" style="float: left">Password</div>
+          <div class="prompt" style="float: right">
+            <a>Forgot password?</a>
+          </div>
+          <i-Input type="password" v-model="formInline.password" placeholder="Password" clearable>
+            <Icon type="ios-lock" slot="prepend" size="16"></Icon>
+          </i-Input>
+        </FormItem>
+        <FormItem>
+          <Button class="btn" type="success" size="large" long :loading="modal_loading" @click="handleSubmit('formInline')">Sign in</Button>
+        </FormItem>
+      </Form>
+    </div>
+    <p class="register-link">
+      New to JiaGE?
+      <router-link to="/account/register">Create an account.</router-link>
+    </p>
+  </div>
 </template>
 
 <script>
