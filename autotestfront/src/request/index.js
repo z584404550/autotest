@@ -1,6 +1,6 @@
 import axios from 'axios' // 相当于js中的ajax
 import { LoadingBar } from 'iview'
-import qs from 'qs' // 处理数据以便传给后端
+// import qs from 'qs' // 处理数据以便传给后端
 
 const isDev = process.env.NODE_ENV === 'development' // 判断是否为开发环境
 

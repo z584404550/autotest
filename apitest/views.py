@@ -1,11 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect  # 加入引用
-from django.contrib.auth.decorators import login_required
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.clickjacking import xframe_options_exempt
 from djcelery.models import PeriodicTask, CrontabSchedule, IntervalSchedule
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from . import models
 from .models import ApiTest, ApiStep
+from .token_module import get_token, out_token
 import pymysql
 # Create your views here.
 
@@ -16,27 +20,47 @@ def check(username=None, password=None):
             return username
         else:
             return False
-    except Exception as e:
+    except Exception :
         return None
 
 
-def login(request):
-    if request.POST:
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = auth.authenticate(username=username, password=password)
+class AuthLogin(APIView):
+    def post(self, request):
+        response = {"status": 100, "msg": None}
+        name = request.data.get("name")
+        pwd = request.data.get("pwd")
+        print(name, pwd)
+        user = models.objects.filter(username=name, password=pwd).first()
         if user is not None and user.is_active:
-            auth.login(request, user)
-            request.session['user'] = username
-            response = HttpResponseRedirect('/home/')
-            return response
+            # token=get_random(name)
+            # 将name进行加密,3600设定超时时间
+            token = get_token(name, 60)
+            models.UserToken.objects.update_or_create(user=user, defaults={"token": token})
+            response["msg"] = "登入成功"
+            response["token"] = token
+            response["name"] = user.username
         else:
-            return render(request, 'login.html', {'error': 'username or password error'})
+            response["msg"] = "用户名或密码错误"
+        return Response(response)
+
+
+# def login(request):
+#     if request.POST:
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
+#         user = auth.authenticate(username=username, password=password)
+#         if user is not None and user.is_active:
+#             auth.login(request, user)
+#             request.session['user'] = username
+#             response = HttpResponseRedirect('/home/')
+#             return response
+#         else:
+#             return render(request, 'login.html', {'error': 'username or password error'})
 
     # else:
     # context = {}
     # return render(request, 'login.html', context)
-    return render(request, 'login.html')
+    # return render(request, 'login.html')
 
 
 @xframe_options_exempt

@@ -23,7 +23,7 @@ from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', views.login),
+    path('login/', views.AuthLogin.as_view()),
     path('home/', views.home),
     path('logout/', views.logout, name='login'),
     path('environment_manage/', proviews.environment_manage),
