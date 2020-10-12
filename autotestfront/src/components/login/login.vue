@@ -63,8 +63,8 @@ export default {
   methods: {
     // post请求需要csrftoken，就是前面提到的headers
     getCookie (name) {
-      var value = ';' + document.cookie
-      var parts = value.split(';' + name + '=')
+      var value = '; ' + document.cookie
+      var parts = value.split('; ' + name + '=')
       if (parts.length === 2) {
         return parts
           .pop()
