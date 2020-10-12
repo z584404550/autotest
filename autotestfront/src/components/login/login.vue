@@ -61,16 +61,35 @@ export default {
     }
   },
   methods: {
+    // post请求需要csrftoken，就是前面提到的headers
+    getCookie (name) {
+      var value = ';' + document.cookie
+      var parts = value.split(';' + name + '=')
+      if (parts.length === 2) {
+        return parts
+          .pop()
+          .split(';')
+          .shift()
+      }
+    },
+    // 用户登录
     handleSubmit (name) {
       this.$refs[name].validate(valid => {
         if (valid) {
           this.modal_loading = true
-          setTimeout(() => {
-            this.modal_loading = false
-            this.$router.push({
-              path: '/'
+          var username = this.formInline.user
+          var password = this.formInline.password
+          // setTimeout(() => {
+          //   this.modal_loading = false
+          //   this.$router.push({
+          //     path: '/home'
+          //   })
+          // }, 2000)
+          this.$http
+            .userLogin(username, password, this.getCookie('csrftoken'))
+            .then(resp => {
+              console.log(resp)// 打印出来看看是否成功
             })
-          }, 2000)
         }
       })
     }

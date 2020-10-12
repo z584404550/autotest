@@ -10,6 +10,16 @@ import pymysql
 # Create your views here.
 
 
+def check(username=None, password=None):
+    try:
+        if username.check_pssword(password):
+            return username
+        else:
+            return False
+    except Exception as e:
+        return None
+
+
 def login(request):
     if request.POST:
         username = request.POST.get('username')
