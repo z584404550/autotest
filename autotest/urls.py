@@ -25,7 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.login),
     path('home/', views.home),
-    path('logout/', views.logout),
+    path('logout/', views.logout, name='login'),
     path('environment_manage/', proviews.environment_manage),
     path('product_manage/', proviews.product_manage),
     path('proenvurl_manage/', proviews.proenvurl_manage),
