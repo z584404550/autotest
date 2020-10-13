@@ -30,9 +30,9 @@ export const userLogin = (username, password, headers) => {
   return ajax({
     url: '/login',
     method: 'post', // post方法
-    // responseType: 'josn', // json格式
+    responseType: 'josn', // json格式
     // 对数据进行处理（否则后端接受不到）
-    // data: qs.stringify({'username': username, 'password': password}),
+    data: qs.stringify({'username': username, 'password': password}),
     headers: {
       'X-CSRFToken': headers
     }
