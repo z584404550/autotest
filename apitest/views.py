@@ -30,7 +30,7 @@ class AuthLogin(APIView):
         username = request.data.get("username")
         password = request.data.get("password")
         print(username, password)
-        user = models.User.objects.filter(username=username, password=password).first()
+        user = models.objects.filter(username=username, password=password).first()
         if user:
             # token=get_random(name)
             # 将name进行加密,3600设定超时时间
