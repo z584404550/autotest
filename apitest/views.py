@@ -4,6 +4,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.clickjacking import xframe_options_exempt
+from django.views.decorators.csrf import csrf_exempt
 from djcelery.models import PeriodicTask, CrontabSchedule, IntervalSchedule
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -23,14 +24,14 @@ def check(username=None, password=None):
     except Exception :
         return None
 
-
+# @csrf_exempt
 class AuthLogin(APIView):
     def post(self, request):
         response = {"status": 100, "msg": None}
         username = request.data.get("username")
         password = request.data.get("password")
         print(username, password)
-        user = models.objects.filter(username=username, password=password).first()
+        user = models.User.objects.filter(username=username, password=password).first()
         if user:
             # token=get_random(name)
             # 将name进行加密,3600设定超时时间
