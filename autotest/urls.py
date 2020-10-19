@@ -44,6 +44,6 @@ urlpatterns = [
     path('periodic_task/', apitestviews.periodic_task),
     path('tasksearch/', apitestviews.tasksearch),
     path(r'', TemplateView.as_view(template_name='index.html')),
-    path(r'^api-token-auth/', views.obtain_auth_token),
-    path(r'^authorzations/', obtain_jwt_token)
+    path(r'api-token-auth/', views.obtain_auth_token),
+    path(r'authorzations/', obtain_jwt_token)
 ]
