@@ -15,31 +15,35 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from apitest import views
+from apitest import apitestviews
 from product import proviews
 from set import setviews
 from bug import bugviews
 from django.views.generic.base import TemplateView
+from rest_framework.authtoken import views
+from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', views.AuthLogin.as_view()),
+    path('login/', apitestviews.AuthLogin.as_view()),
     # path('login/', views.login),
-    path('home/', views.home),
-    path('logout/', views.logout, name='login'),
+    path('home/', apitestviews.home),
+    path('logout/', apitestviews.logout, name='login'),
     path('environment_manage/', proviews.environment_manage),
     path('product_manage/', proviews.product_manage),
     path('proenvurl_manage/', proviews.proenvurl_manage),
     path('promodule_manage/', proviews.promodule_manage),
-    path('apitest_manage/', views.apitest_manage),
-    path('apistep_manage/', views.apistep_manage, name='apistep_manage'),
+    path('apitest_manage/', apitestviews.apitest_manage),
+    path('apistep_manage/', apitestviews.apistep_manage, name='apistep_manage'),
     path('bug_manage/', bugviews.bug_manage),
-    path('test_report/', views.test_report),
+    path('test_report/', apitestviews.test_report),
     path('set_user', setviews.set_user),
-    path('left/', views.left),
-    path('apisearch/', views.apisearch),
-    path('welcome/', views.welcome),
-    path('periodic_task/', views.periodic_task),
-    path('tasksearch/', views.tasksearch),
+    path('left/', apitestviews.left),
+    path('apisearch/', apitestviews.apisearch),
+    path('welcome/', apitestviews.welcome),
+    path('periodic_task/', apitestviews.periodic_task),
+    path('tasksearch/', apitestviews.tasksearch),
     path(r'', TemplateView.as_view(template_name='index.html')),
+    path(r'^api-token-auth/', views.obtain_auth_token),
+    path(r'^authorzations/', obtain_jwt_token)
 ]

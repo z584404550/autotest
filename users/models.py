@@ -12,8 +12,8 @@ class UserProfile(AbstractUser):
     gender = models.CharField(choices=chocie_gender, default='female', max_length=6, verbose_name='性别')
     mobile = models.CharField(max_length=11, null=True, blank=True, verbose_name='手机号')
     image = models.ImageField(upload_to='image/%Y/%m', default='image/default.png', max_length=128, verbose_name='用户头像')
-    create_time = models.DateTimeField('创建时间', auto_now_add=True, verbose_name='创建时间')  # 创建时间，自动获取第一次时间
-    update_time = models.DateTimeField('创建时间', auto_now=True, verbose_name='更新时间')  # 更新时间，自动获取当前时间
+    create_time = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)  # 创建时间，自动获取第一次时间
+    update_time = models.DateTimeField(verbose_name='创建时间', auto_now=True)  # 更新时间，自动获取当前时间
 
     class Meta:
         verbose_name = '用户信息'
