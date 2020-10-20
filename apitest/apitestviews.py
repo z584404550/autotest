@@ -4,13 +4,11 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.clickjacking import xframe_options_exempt
-from django.views.decorators.csrf import csrf_exempt
 from djcelery.models import PeriodicTask, CrontabSchedule, IntervalSchedule
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from . import models
 from .models import ApiTest, ApiStep
-from .token_module import get_token, out_token
 import pymysql
 # Create your views here.
 
@@ -21,28 +19,8 @@ def check(username=None, password=None):
             return username
         else:
             return False
-    except Exception :
+    except Exception:
         return None
-
-# @csrf_exempt
-class AuthLogin(APIView):
-    def post(self, request):
-        response = {"status": 100, "msg": None}
-        username = request.data.get("username")
-        password = request.data.get("password")
-        print(username, password)
-        user = models.User.objects.filter(username=username, password=password).first()
-        if user:
-            # token=get_random(name)
-            # 将name进行加密,3600设定超时时间
-            token = get_token(username, 60)
-            models.UserToken.objects.update_or_create(user=user, defaults={"token": token})
-            response["msg"] = "登入成功"
-            response["token"] = token
-            response["name"] = user.username
-        else:
-            response["msg"] = "用户名或密码错误"
-        return Response(response)
 
 
 def login(request):
