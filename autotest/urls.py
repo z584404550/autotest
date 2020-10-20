@@ -19,13 +19,13 @@ from apitest import apitestviews
 from product import proviews
 from set import setviews
 from bug import bugviews
+from users import utils
 from django.views.generic.base import TemplateView
-from rest_framework.authtoken import views
-from rest_framework_jwt.views import obtain_jwt_token
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', apitestviews.AuthLogin.as_view()),
+    path('login/', utils.obtain_jwt_token),
     # path('login/', views.login),
     path('home/', apitestviews.home),
     path('logout/', apitestviews.logout, name='login'),
@@ -44,6 +44,10 @@ urlpatterns = [
     path('periodic_task/', apitestviews.periodic_task),
     path('tasksearch/', apitestviews.tasksearch),
     path(r'', TemplateView.as_view(template_name='index.html')),
-    path(r'api-token-auth/', views.obtain_auth_token),
-    path(r'authorzations/', obtain_jwt_token)
+    # 获取
+    path('api-token-auth/', utils.obtain_jwt_token),
+    # 刷新
+    path('api-token-refresh/', utils.refresh_jwt_token),
+    # 校验
+    path('api-token-verify/', utils.verify_jwt_token),
 ]
