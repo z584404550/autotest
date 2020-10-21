@@ -1,7 +1,7 @@
 <template>
   <div class="main-body">
     <div class="form">
-      <Icon type="logo-octocat" size="60" />
+<!--      <Icon type="logo-octocat" size="60" />-->
       <h1>Sign in to JiaGE</h1>
     </div>
     <div class="login">
@@ -9,7 +9,7 @@
         <FormItem prop="user">
           <div class="prompt">Username or email address</div>
           <i-Input type="text" v-model="formInline.user" placeholder="Username or Email" clearable>
-            <Icon type="ios-person" slot="prepend" size="16"></Icon>
+<!--            <Icon type="ios-person" slot="prepend" size="16"></Icon>-->
           </i-Input>
         </FormItem>
         <FormItem prop="password">
@@ -18,11 +18,18 @@
             <a>Forgot password?</a>
           </div>
           <i-Input type="password" v-model="formInline.password" placeholder="Password" clearable>
-            <Icon type="ios-lock" slot="prepend" size="16"></Icon>
+<!--            <Icon type="ios-lock" slot="prepend" size="16"></Icon>-->
           </i-Input>
         </FormItem>
         <FormItem>
-          <Button class="btn" type="success" size="large" long :loading="modal_loading" @click="handleSubmit('formInline')">Sign in</Button>
+          <Button
+            class="btn"
+            type="success"
+            size="large"
+            long
+            :loading="modal_loading"
+            @click="handleSubmit('formInline')"
+          >Sign in</Button>
         </FormItem>
       </Form>
     </div>
@@ -75,7 +82,7 @@ export default {
           //   })
           // }, 2000)
           this.$http
-            .userLogin(username, password, this.getCookie('csrftoken'))
+            .login(username, password)
             .then(resp => {
               console.log(resp)// 打印出来看看是否成功
             })

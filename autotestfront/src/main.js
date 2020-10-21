@@ -7,12 +7,15 @@ import 'iview/dist/styles/iview.css'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
+import * as $http from './requests/index' // 从index.js文件引入
 
 Vue.prototype.axios = axios
 
 Vue.config.productionTip = false
 
 Vue.use(ElementUI) // 引入elemenui
+
+Vue.prototype.$http = $http
 
 /* eslint-disable no-new */
 new Vue({
