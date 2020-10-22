@@ -20,10 +20,12 @@ export default {
   methods: {
     requetLogin () {
       // 获取小结的内容
-      let date = {
-        username: 'admin', password: '123456'
-      }
-      login(date).then((resp) => {
+      // let date = {
+      //   username: 'admin', password: '123456'
+      // }
+      let username = 'admin'
+      let password = '123456'
+      login(username, password).then((resp) => {
         // resp: django后端返回的数
         console.log(resp)
       }).concat((err) => {
