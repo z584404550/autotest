@@ -1,61 +1,72 @@
 <template>
   <div class="main-body">
     <div class="form">
-      <Icon type="logo-octocat" size="60" />
-      <h1>Sign in to JiaGE</h1>
+      <h1 class="login-title">欢迎登录</h1>
     </div>
     <div class="login">
-      <Form ref="formInline" :model="formInline" :rules="ruleInline">
-        <FormItem prop="user">
-          <div class="prompt">Username or email address</div>
-          <i-Input type="text" v-model="formInline.user" placeholder="Username or Email" clearable>
-            <Icon type="ios-person" slot="prepend" size="16"></Icon>
-          </i-Input>
-        </FormItem>
-        <FormItem prop="password">
-          <div class="prompt" style="float: left">Password</div>
-          <div class="prompt" style="float: right">
-            <a>Forgot password?</a>
-          </div>
-          <i-Input type="password" v-model="formInline.password" placeholder="Password" clearable>
-            <Icon type="ios-lock" slot="prepend" size="16"></Icon>
-          </i-Input>
-        </FormItem>
-        <FormItem>
-          <Button
-            class="btn"
-            type="success"
-            size="large"
-            long
-            :loading="modal_loading"
-            @click="handleSubmit('formInline')"
-          >Sign in</Button>
-        </FormItem>
-      </Form>
+      <el-form ref="formInline" :model="formInline" :rules="ruleInline">
+        <el-form-item prop="username">
+          <el-input
+            type="text"
+            v-model="formInline.username"
+            placeholder="请输入用户名"
+            prefix-icon="el-icon-user"
+            :rules="[
+              { required: true, message: '用户名不能为空'}
+              ]"
+            clearable>
+          </el-input>
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input
+            v-model="formInline.password"
+            placeholder="请输入密码"
+            prefix-icon="el-icon-lock"
+            :rules="[
+              { required: true, message: '密码不能为空'}
+              ]"
+            show-password>
+          </el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="handleSubmit">登录</el-button>
+        </el-form-item>
+      </el-form>
     </div>
-    <p class="register-link">
-      New to JiaGE?
-      <router-link to="/account/register">Create an account.</router-link>
-    </p>
   </div>
 </template>
-
 <script>
 import { login } from '@/apis/index'
-// @符号指的是src路径
 export default {
-  // vue页面中双向绑定数据
   data () {
-    return {title: '测试axios'}
-  },
-  // vue生命周期中挂在的函数
-  mounted () {
-
+    return {
+      modal_loading: false,
+      formInline: {
+        username: '',
+        password: ''
+      },
+      ruleInline: {
+        username: [
+          {
+            required: true,
+            message: 'Please enter the user name',
+            trigger: 'blur'
+          }
+        ],
+        password: [
+          {
+            required: true,
+            message: 'Please enter the password',
+            trigger: 'blur'
+          }
+        ]
+      }
+    }
   },
   methods: {
-    requetLogin () {
+    handleSubmit () {
       // 获取小结的内容
-      let username = 'admin'
+      let username = this.formInline.username
       let password = '123456'
       login(username, password).then((resp) => {
         // resp: django后端返回的数

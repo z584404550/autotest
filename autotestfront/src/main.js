@@ -9,8 +9,8 @@ import 'iview/dist/styles/iview.css'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
-Vue.use(ElementUI);
-Vue.use(iView);
+Vue.use(ElementUI)
+Vue.use(iView)
 Vue.config.productionTip = false
 Vue.prototype.$http = $http
 
