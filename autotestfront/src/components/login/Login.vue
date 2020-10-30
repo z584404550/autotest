@@ -8,8 +8,8 @@
       <Form ref="formInline" :model="formInline" :rules="ruleInline">
         <FormItem prop="user">
           <div class="prompt">Username or email address</div>
-          <Input type="text" v-model="formInline.username" placeholder="Username or Email" clearable>
-            <Icon type="ios-person" slot="prepend" size="16"></Icon>
+          <Input id="username" type="text" v-model="formInline.username" placeholder="请输入用户名" clearable>
+            <Icon type="ios-person" slot="prefix" size="16"></Icon>
           </Input>
         </FormItem>
         <FormItem prop="password">
@@ -17,19 +17,12 @@
           <div class="prompt" style="float: right">
             <a>Forgot password?</a>
           </div>
-          <Input type="password" v-model="formInline.password" placeholder="Password" clearable>
-            <Icon type="ios-lock" slot="prepend" size="16"></Icon>
+          <Input id="password" type="password" v-model="formInline.password" placeholder="请输入密码" clearable show-password>
+            <Icon type="ios-lock" slot="prefix" size="16"></Icon>
           </Input>
         </FormItem>
         <FormItem>
-          <Button
-            class="btn"
-            type="primary"
-            size="large"
-            long
-            :loading="modal_loading"
-            @click="loginSubmit('formInline')"
-          >Sign in</Button>
+          <Button id="submit" class="btn" type="primary" size="large" long :loading="modal_loading" @click="loginSubmit('formInline')">登&nbsp;&nbsp;录</Button>
         </FormItem>
       </Form>
     </div>
