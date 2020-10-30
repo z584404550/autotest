@@ -1,38 +1,42 @@
 <template>
   <div class="main-body">
     <div class="form">
-      <h1 class="login-title">欢迎登录</h1>
+      <Icon type="logo-octocat" size="60" />
+      <h1>Sign in to JiaGE</h1>
     </div>
     <div class="login">
-      <el-form ref="formInline" :model="formInline" :rules="ruleInline">
-        <el-form-item prop="username">
-          <el-input
-            type="text"
-            v-model="formInline.username"
-            placeholder="请输入用户名"
-            prefix-icon="el-icon-user"
-            :rules="[
-              { required: true, message: '用户名不能为空'}
-              ]"
-            clearable>
-          </el-input>
-        </el-form-item>
-        <el-form-item prop="password">
-          <el-input
-            v-model="formInline.password"
-            placeholder="请输入密码"
-            prefix-icon="el-icon-lock"
-            :rules="[
-              { required: true, message: '密码不能为空'}
-              ]"
-            show-password>
-          </el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="handleSubmit">登录</el-button>
-        </el-form-item>
-      </el-form>
+      <Form ref="formInline" :model="formInline" :rules="ruleInline">
+        <FormItem prop="user">
+          <div class="prompt">Username or email address</div>
+          <Input type="text" v-model="formInline.user" placeholder="Username or Email" clearable>
+            <Icon type="ios-person" slot="prepend" size="16"></Icon>
+          </Input>
+        </FormItem>
+        <FormItem prop="password">
+          <div class="prompt" style="float: left">Password</div>
+          <div class="prompt" style="float: right">
+            <a>Forgot password?</a>
+          </div>
+          <Input type="password" v-model="formInline.password" placeholder="Password" clearable>
+            <Icon type="ios-lock" slot="prepend" size="16"></Icon>
+          </Input>
+        </FormItem>
+        <FormItem>
+          <Button
+            class="btn"
+            type="primary"
+            size="large"
+            long
+            :loading="modal_loading"
+            @click="loginSubmit('formInline')"
+          >Sign in</Button>
+        </FormItem>
+      </Form>
     </div>
+    <p class="register-link">
+      New to JiaGE?
+      <router-link to="/account/register">Create an account.</router-link>
+    </p>
   </div>
 </template>
 <script>
@@ -64,15 +68,17 @@ export default {
     }
   },
   methods: {
-    handleSubmit () {
-      // 获取小结的内容
-      let username = this.formInline.username
-      let password = '123456'
-      login(username, password).then((resp) => {
-        // resp: django后端返回的数
-        console.log(resp)
-      }).concat((err) => {
-        console.log(err)
+    loginSubmit (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.modal_loading = true
+          let username = this.formInline.username
+          let password = this.formInline.password
+          login(username, password).then((resp) => {
+            console.log(resp)
+          })
+          this.$router.push({path: '/'})
+        }
       })
     }
   }
