@@ -8,7 +8,7 @@
       <Form ref="formInline" :model="formInline" :rules="ruleInline">
         <FormItem prop="user">
           <div class="prompt">Username or email address</div>
-          <Input type="text" v-model="formInline.user" placeholder="Username or Email" clearable>
+          <Input type="text" v-model="formInline.username" placeholder="Username or Email" clearable>
             <Icon type="ios-person" slot="prepend" size="16"></Icon>
           </Input>
         </FormItem>
@@ -53,7 +53,7 @@ export default {
         username: [
           {
             required: true,
-            message: 'Please enter the user name',
+            message: 'Please enter the username',
             trigger: 'blur'
           }
         ],
