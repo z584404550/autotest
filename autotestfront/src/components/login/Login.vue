@@ -70,7 +70,7 @@ export default {
           login(username, password).then((resp) => {
             console.log(resp)
           })
-          this.$router.push({path: '/'})
+          this.$router.push({path: '/home'})
         }
       })
     }

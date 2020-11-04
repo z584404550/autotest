@@ -21,6 +21,17 @@
               <Icon type="ios-paper"></Icon>
               Item 4
             </MenuItem>
+            <div class="demo-avatar">
+              <ul v-if="!username">
+                <li class="userinfo">
+                  <Button :size="buttonSize" type="button" ghost to="/login">登录</Button>
+                </li>
+              </ul>
+              <Avatar icon="ios-person" size="small" />
+              <MenuItem>
+                {{userinfo.NAME}}
+              </MenuItem>
+            </div>
           </div>
         </Menu>
       </Header>
@@ -72,7 +83,12 @@
 
 <script>
 export default {
-  name: 'Home'
+  data () {
+    return {
+      userinfo:{},
+      username:false
+    }
+  }
 }
 </script>
 
