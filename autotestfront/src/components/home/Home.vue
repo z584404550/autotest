@@ -85,8 +85,6 @@
 export default {
   data () {
     return {
-      userinfo:{},
-      username:false
     }
   }
 }

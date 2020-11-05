@@ -8,19 +8,19 @@
       <Form ref="formInline" :model="formInline" :rules="ruleInline">
         <FormItem prop="user">
           <div class="prompt">Username</div>
-          <i-Input type="text" v-model="formInline.user" placeholder="Username" clearable>
+          <Input type="text" v-model="formInline.user" placeholder="Username" clearable>
             <Icon type="ios-person" slot="prepend" size="16"></Icon>
-          </i-Input>
+          </Input>
         </FormItem>
         <FormItem prop="email">
           <div class="prompt">Email address</div>
-          <i-Input type="text" v-model="formInline.email" placeholder="Email address" clearable>
+          <Input type="text" v-model="formInline.email" placeholder="Email address" clearable>
             <Icon type="ios-mail" slot="prepend" size="16"></Icon>
-          </i-Input>
+          </Input>
         </FormItem>
         <FormItem prop="password">
           <div class="prompt">Password</div>
-          <i-Input
+          <Input
             type="password"
             v-model="formInline.password"
             placeholder="Password"
@@ -28,7 +28,7 @@
             @keyup.enter.native="handleSubmit('formInline')"
           >
             <Icon type="ios-lock" slot="prepend" size="16"></Icon>
-          </i-Input>
+          </Input>
         </FormItem>
         <FormItem>
           <Button
@@ -52,34 +52,34 @@
 <script>
 export default {
   methods: {
-    handleSubmit(name) {
+    handleSubmit (name) {
       this.$refs[name].validate(valid => {
         if (valid) {
-          this.modal_loading = true;
-          var username = this.formInline.user;  // 获取用户输入信息
-          var password = this.formInline.password;
-          var email = this.formInline.email;
+          this.modal_loading = true
+          var username = this.formInline.user
+          var password = this.formInline.password
+          var email = this.formInline.email
           this.$http
             .userRegister(
-             email,
-             username,
-             password,
-             this.getCookie("csrftoken")  // 后台调用接口
-           ) // 传给后台接口然后保存到数据库
-          .then(resp => {
-            if (resp.result.code === "200") { // 如果成功进行跳转
-              this.$router.push({
-                path: "/account/login"
-              });
-              this.$Message.success(resp.result.msg);
-            } else {
-              this.$Message.error(resp.result.msg);
-            }
-            this.modal_loading = false;
-          })
-       }
-     })
-   }
+              email,
+              username,
+              password,
+              this.getCookie('csrftoken')
+            )
+            .then(resp => {
+              if (resp.result.code === '200') {
+                this.$router.push({
+                  path: '/login'
+                })
+                this.$Message.success(resp.result.msg)
+              } else {
+                this.$Message.error(resp.result.msg)
+              }
+              this.modal_loading = false
+            })
+        }
+      })
+    }
   }
 }
 </script>

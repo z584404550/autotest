@@ -116,13 +116,13 @@ export const login = (username, password) => {
  * @param {Object} params [请求时携带的参数]
  */
 export const post = (url,... params) =>{
-    return new Promise((resolve, reject) => {
-        axios.post(url, QS.stringify(...params))
-        .then(res => {
-            resolve(res.data);
-        })
-        .catch(err => {
-            reject(err.data)
-        })
-    });
+  return new Promise((resolve, reject) => {
+    axios.post(url, QS.stringify(...params))
+      .then(res => {
+        resolve(res.data);
+      })
+      .catch(err => {
+        reject(err.data)
+      })
+  })
 }
