@@ -3,8 +3,7 @@
  */
 import axios from 'axios'
 import qs from 'qs'
-// import Router from '../router/index.js'
-//
+
 // 环境的切换
 if (process.env.NODE_ENV === 'development') {
   axios.defaults.baseURL = 'http://127.0.0.1:8000'
