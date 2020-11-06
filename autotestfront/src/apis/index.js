@@ -27,7 +27,7 @@ axios.interceptors.request.use(
   config => {
     // 每次发送请求之前判断是否存在token，如果存在，则统一在http请求的header都加上token，不用每次请求都手动添加了
     // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断
-    const token = store.state.token
+    const token = store.state.Authorization
     token && (config.headers.Authorization = token)
     return config
   },
@@ -68,7 +68,7 @@ axios.interceptors.response.use(
             forbidClick: true
           })
           // 清除token
-          localStorage.removeItem('token')
+          localStorage.removeItem('Authorization')
           store.commit('loginSuccess', null)
           // 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面
           setTimeout(() => {
