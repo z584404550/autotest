@@ -62,7 +62,7 @@ axios.interceptors.response.use(
         // 清除本地token和清空vuex中token对象
         // 跳转登录页面
         case 403:
-          Toast({
+          this.$Toast({
             message: '登录过期，请重新登录',
             duration: 1000,
             forbidClick: true
@@ -82,7 +82,7 @@ axios.interceptors.response.use(
           break
         // 404请求不存在
         case 404:
-          Toast({
+          this.$Toast({
             message: '网络请求不存在',
             duration: 1500,
             forbidClick: true
@@ -90,7 +90,7 @@ axios.interceptors.response.use(
           break
         // 其他错误，直接抛出错误提示
         default:
-          Toast({
+          this.$Toast({
             message: error.response.data.message,
             duration: 1500,
             forbidClick: true

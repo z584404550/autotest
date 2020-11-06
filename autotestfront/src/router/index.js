@@ -42,7 +42,7 @@ const router = new Router({
   ]
 })
 
-//导航守卫
+// 导航守卫
 router.beforeEach((to, from, next) => {
   if (to.meta.requireAuth) {
     if (store.state.Authorization) {
