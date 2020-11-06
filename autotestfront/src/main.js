@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 import * as $http from './apis/index' // 从index.js文件引入
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
@@ -18,6 +19,7 @@ Vue.prototype.$http = $http
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

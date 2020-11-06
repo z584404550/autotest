@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from '../store/store'
+import store from '../store'
 // import HelloWorld from '@/components/HelloWorld'
 import Login from '../components/login/Login'
 import Home from '../components/home/Home'
@@ -8,7 +8,8 @@ import Register from '../components/login/Register'
 
 Vue.use(Router)
 
-export default new Router({
+// export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     // {
@@ -41,6 +42,7 @@ export default new Router({
   ]
 })
 
+//导航守卫
 router.beforeEach((to, from, next) => {
   if (to.meta.requireAuth) {
     if (store.state.token) {
@@ -55,3 +57,5 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+
+export default router
