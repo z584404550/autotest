@@ -34,6 +34,7 @@
 </template>
 <script>
 import { login } from '@/apis/index'
+// import store from '@/store'
 export default {
   data () {
     return {
@@ -67,10 +68,16 @@ export default {
           this.modal_loading = true
           let username = this.formInline.username
           let password = this.formInline.password
-          login(username, password).then((resp) => {
+          login(username, password).then(resp => {
             console.log(resp)
+            if (resp.data.status === 200) {
+              this.$store.commit('setToken', resp.data.data.token)
+              this.$store.commit('setUserName', resp.data.data.username)
+              this.$router.push({path: '/home'})
+            } else {
+
+            }
           })
-          this.$router.push({path: '/home'})
         }
       })
     }

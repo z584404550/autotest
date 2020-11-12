@@ -31,11 +31,11 @@ def jwt_response_payload_handler(token, user=None, request=None):
     return {
         "msg": "success",
         "status": 200,
-        "data": [{
+        "data": {
             # data自定义你接口想返回的信息
             'token': token,
             'username': user.username
-        }]
+        }
     }
 
 
