@@ -48,6 +48,11 @@ def jwt_response_payload_error_handler(serializer, request=None):
     }
 
 
+def jwt_get_user_secret(user):
+
+    return user.user_secret
+
+
 class MyObtainJSONWebToken(ObtainJSONWebToken, MyJSONWebTokenAPIView):
     pass
 

@@ -23,7 +23,8 @@
             </MenuItem>
             <div class="demo-avatar">
               <Avatar icon="ios-person" size="small" />
-              {{$store.state.userName}}
+              {{$store.state.UserName}}
+              <Button type="text" shape="circle" icon="ios-power" @click="loginout"></Button>
             </div>
           </div>
         </Menu>
@@ -78,6 +79,13 @@
 export default {
   data () {
     return {
+    }
+  },
+  methods: {
+    loginout () {
+      localStorage.removeItem('Authorization')
+      localStorage.removeItem('UserName')
+      this.$router.push({path: '/login'})
     }
   }
 }
