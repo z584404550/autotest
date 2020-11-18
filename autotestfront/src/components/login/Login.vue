@@ -45,14 +45,14 @@ export default {
         username: [
           {
             required: true,
-            message: 'Please enter the username',
+            message: '请输入用户名',
             trigger: 'blur'
           }
         ],
         password: [
           {
             required: true,
-            message: 'Please enter the password',
+            message: '请输入密码',
             trigger: 'blur'
           }
         ]
