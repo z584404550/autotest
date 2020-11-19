@@ -21,7 +21,7 @@
               <Icon type="ios-paper"></Icon>
               Item 4
             </MenuItem>
-            <div class="demo-avatar">
+            <div class="demo-avatar" ghost>
               <Avatar icon="ios-person" size="small" />
               {{$store.state.UserName}}
               <Button type="text" shape="circle" icon="ios-power" @click="loginout"></Button>
