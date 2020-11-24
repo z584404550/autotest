@@ -2,7 +2,7 @@
  * 请求拦截、相应拦截、错误统一处理
  */
 import axios from 'axios'
-import QS from 'qs'
+import qs from 'qs'
 import router from '../router'
 import store from '../store'
 
@@ -20,7 +20,7 @@ axios.defaults.timeout = 10000
 
 // post请求头
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
-// axios.defaults.headers.post['Content-Type'] = 'application/json'
+axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 // 请求拦截器
 axios.interceptors.request.use(
@@ -108,7 +108,7 @@ export const login = (username, password) => {
     method: 'post', // post方法
     responseType: 'json', // json的格式
     // 对数据进行处理（否则后端接收不到）
-    data: QS.stringify({ 'username': username, 'password': password })
+    data: qs.stringify({ 'username': username, 'password': password })
   })
 }
 
@@ -119,7 +119,7 @@ export const login = (username, password) => {
  */
 export const post = (url, ...params) => {
   return new Promise((resolve, reject) => {
-    axios.post(url, QS.stringify(...params))
+    axios.post(url, qs.stringify(...params))
       .then(res => {
         resolve(res.data)
       })
