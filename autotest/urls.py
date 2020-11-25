@@ -19,7 +19,7 @@ from apitest import apitestviews
 from product import proviews
 from set import setviews
 from bug import bugviews
-from users import utils
+from users import utils, usersviews
 from django.views.generic.base import TemplateView
 
 
@@ -50,4 +50,5 @@ urlpatterns = [
     path('api-token-refresh/', utils.refresh_jwt_token),
     # 校验
     path('api-token-verify/', utils.verify_jwt_token),
+    path('user/', usersviews.UserProfile.as_view())
 ]

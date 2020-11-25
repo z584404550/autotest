@@ -2,7 +2,11 @@ from rest_framework import generics, serializers
 from ..models import UserProfile
 
 
-class UserProfileSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    name = serializers.CharField(required=False, allow_null=False, max_length=150)
+    password = serializers.CharField(required=False, allow_null=False, max_length=128)
+
     class Meta:
         model = UserProfile
         fields = '__all__'

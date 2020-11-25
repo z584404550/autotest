@@ -39,7 +39,7 @@ class CheckTokenMiddleware(MiddlewareMixin):
 
     def process_response(self, request, response):
         # 处理login请求
-        if response.META['PATH_INFO'] == '/users/auths/':
+        if response.META['PATH_INFO'] == '/login/':
             # 因为登陆认证ObtainJSONWebToken继承自JSONWebTokenAPIView，所以是Response对象，不是HttpResponse对象，所以使用response.data,而不是response.content
             rep_data = response.data
             # 默认response.data里面必有token，根据序列化器VerifyJSONWebTokenSerializer()返回token和user
