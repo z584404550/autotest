@@ -50,5 +50,5 @@ urlpatterns = [
     path('api-token-refresh/', utils.refresh_jwt_token),
     # 校验
     path('api-token-verify/', utils.verify_jwt_token),
-    path('user/', usersviews.UserProfile.as_view())
+    path('user/', usersviews.UserList.as_view())
 ]

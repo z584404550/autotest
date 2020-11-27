@@ -9,10 +9,10 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 
 # Create your views here.
-class UserProfile(APIView):
+class UserList(APIView):
     authentication_classes = [JSONWebTokenAuthentication,]
 
-    def get(self, request, id):
-        queryset = UserProfile.objects.get(id=id)
+    def get(self, request):
+        queryset = UserProfile.objects.all()
         serializer = UserSerializer(instance=queryset, many=True)
         return Response(serializer.data)

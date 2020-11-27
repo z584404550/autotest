@@ -4,9 +4,9 @@ from ..models import UserProfile
 
 class UserSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    name = serializers.CharField(required=False, allow_null=False, max_length=150)
+    username = serializers.CharField(required=False, allow_null=False, max_length=150)
     password = serializers.CharField(required=False, allow_null=False, max_length=128)
 
     class Meta:
         model = UserProfile
-        fields = '__all__'
+        fields = ['id', 'username', 'password']
