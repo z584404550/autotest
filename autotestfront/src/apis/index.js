@@ -119,7 +119,7 @@ export const login = (username, password) => {
  */
 export const post = (url, ...params) => {
   return new Promise((resolve, reject) => {
-    axios.post(url, qs.stringify(...params))
+    axios.post(url, JSON.stringify(...params))
       .then(res => {
         resolve(res.data)
       })

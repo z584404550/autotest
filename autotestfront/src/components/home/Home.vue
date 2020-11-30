@@ -85,6 +85,7 @@ export default {
     loginout () {
       localStorage.removeItem('Authorization')
       localStorage.removeItem('UserName')
+      this.$store.dispatch('setInfo')
       this.$router.push({path: '/login'})
     }
   }

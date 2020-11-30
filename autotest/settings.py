@@ -142,7 +142,7 @@ REST_FRAMEWORK = {
 
 # JWT
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
     # 'JWT_RESPONSE_PAYLOAD_HANDLER': 'users.utils.jwt_response.jwt_response_payload_handler',
     'JWT_GET_USER_SECRET_KEY': 'users.utils.jwt_get_user_secret',
